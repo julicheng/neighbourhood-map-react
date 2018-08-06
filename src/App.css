@@ -1,0 +1,91 @@
+body,
+html {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+}
+
+.App {
+  text-align: center;
+}
+/* Header */
+.App-header {
+  background-color: #222;
+  padding: 1px;
+  color: white;
+}
+
+.App-header-title {
+  font-size: 1.5em;
+}
+.sidebar-toggle-button {
+  /* display: inline; */
+  float: left;
+  padding: 10px;
+  margin: 5px 0 0 5px;
+  cursor: pointer;
+}
+.hamburger {
+  height: 4px;
+  width: 50px;
+  background: white;
+  z-index: 300;
+  display: block;
+  margin: 7px;
+}
+
+/* Footer */
+.App-footer {
+  background-color: #222;
+  color: white;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 200;
+  height: 50px;
+  margin: auto auto 0 auto;
+}
+
+.App-footer-title {
+  font-size: 1em;
+}
+
+h1 > a {
+  color: rgba(255, 255, 255, 0.836);
+}
+
+/* Sidebar */
+nav {
+  width: 300px;
+  height: 100%;
+  position: absolute;
+  background: rgb(26, 25, 25);
+  z-index: 100;
+}
+
+.hideSidebar {
+  transform: translate(-300px, 0);
+  transition: transform 0.3 ease;
+}
+
+nav li {
+  padding: 10px;
+  color: white;
+  text-align: left;
+}
+nav li:nth-child(odd) {
+  background: rgb(46, 46, 46);
+}
+
+nav ul {
+  margin: 0;
+  padding: 0;
+}
+
+/* Map */
+#map {
+  width: 100vw;
+  height: calc(100vh - 128px);
+  background: black;
+}
