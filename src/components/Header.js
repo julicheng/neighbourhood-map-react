@@ -13,7 +13,7 @@ class Header extends Component {
           <div class="hamburger" />
           <div class="hamburger" />
         </div>
-        <h3 className="App-header-title">HK Neighbourhood Map</h3>
+        <h3 className="App-header-title">TST Neighbourhood Map</h3>
       </header>
     );
   }

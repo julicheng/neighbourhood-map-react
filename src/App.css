@@ -89,3 +89,10 @@ nav ul {
   height: calc(100vh - 128px);
   background: black;
 }
+
+/* Filter */
+select {
+  width: 100%;
+  font-size: 15px;
+  background: white;
+}
