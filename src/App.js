@@ -5,8 +5,6 @@ import Map from "./components/Map";
 import Footer from "./components/Footer";
 import "./App.css";
 
-// const google = window.google;
-
 class App extends Component {
   state = {
     sidebar: false,
@@ -64,9 +62,9 @@ class App extends Component {
         category: "Hotels"
       }
     ],
-    allMarkers: [],
+    markers: [],
     filterMarkers: [],
-    map: "",
+    map: [],
     filter: "none"
   };
 
@@ -76,6 +74,16 @@ class App extends Component {
 
   setFilterState = filter => {
     this.setState({ filter });
+  };
+
+  setLocationState = location => {
+    this.setState();
+  };
+
+  setMarkersState = marker => {
+    this.setState(prevState => {
+      prevState.markers.push(marker);
+    });
   };
 
   handleButtonClick = () => {
@@ -99,6 +107,8 @@ class App extends Component {
           markers={this.state.markers}
           map={this.state.map}
           setMapState={this.setMapState}
+          setLocationState={this.setLocationState}
+          setMarkersState={this.setMarkersState}
         />
         <Footer />
       </div>
