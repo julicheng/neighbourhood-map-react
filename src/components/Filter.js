@@ -1,10 +1,14 @@
 import React, { Component } from "react";
 
 class Filter extends Component {
-  state = {};
   render() {
     return (
-      <select value="none">
+      <select
+        value={this.props.filter}
+        onChange={event => {
+          this.props.setFilterState(event.target.value);
+        }}
+      >
         <option value="none">No Category</option>
         <option value="Shopping">Shopping</option>
         <option value="Hotels">Dining</option>

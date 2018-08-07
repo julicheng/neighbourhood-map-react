@@ -5,11 +5,14 @@ class Sidebar extends Component {
   render() {
     return (
       <nav className={this.props.sidebar ? "" : "hideSidebar"}>
-        <Filter />
+        <Filter
+          filter={this.props.filter}
+          setFilterState={this.props.setFilterState}
+        />
         <ul>
-          <li>testing</li>
-          <li>testing</li>
-          <li>testing</li>
+          {this.props.locations.map(location => {
+            return <li>{location.content}</li>;
+          })}
         </ul>
       </nav>
     );
