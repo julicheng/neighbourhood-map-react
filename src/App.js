@@ -92,7 +92,7 @@ class App extends Component {
           sidebar={this.state.sidebar}
           filter={this.state.filter}
           locations={this.state.locations}
-          setFilterState={this.state.setFilterState}
+          setFilterState={this.setFilterState}
         />
         <Map
           locations={this.state.locations}
