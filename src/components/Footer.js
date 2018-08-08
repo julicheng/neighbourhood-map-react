@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 
 const Footer = () => {
   return (
@@ -6,13 +6,18 @@ const Footer = () => {
       <h1 className="App-footer-title">
         Built with the{" "}
         <a
-          href="https://developers.google.com/maps/documentation/"
+          href="https://developers.google.com/maps/documentation/ "
           target="_blank"
+          rel="noopener noreferrer"
         >
           Google Maps API
         </a>{" "}
         and{" "}
-        <a href="https://developer.foursquare.com/places-api" target="_blank">
+        <a
+          href="https://developer.foursquare.com/places-api"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           Foursqaure Places API
         </a>
       </h1>

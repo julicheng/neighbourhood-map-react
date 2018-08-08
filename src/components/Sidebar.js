@@ -11,7 +11,7 @@ class Sidebar extends Component {
         />
         <ul>
           {this.props.locations.map(location => {
-            return <li>{location.name}</li>;
+            return <li key={location.name}>{location.name}</li>;
           })}
         </ul>
       </nav>

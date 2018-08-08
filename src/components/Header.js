@@ -6,12 +6,12 @@ class Header extends Component {
     return (
       <header className="App-header">
         <div
-          class="sidebar-toggle-button"
+          className="sidebar-toggle-button"
           onClick={this.props.handleButtonClick}
         >
-          <div class="hamburger" />
-          <div class="hamburger" />
-          <div class="hamburger" />
+          <div className="hamburger" />
+          <div className="hamburger" />
+          <div className="hamburger" />
         </div>
         <h3 className="App-header-title">TST Neighbourhood Map</h3>
       </header>

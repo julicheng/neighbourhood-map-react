@@ -18,7 +18,7 @@ class Map extends Component {
   setMarkers = map => {
     // loop through markers
     this.props.locations.map(marker => {
-      this.addMarker(marker, map);
+      return this.addMarker(marker, map);
     });
   };
 

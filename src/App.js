@@ -11,61 +11,49 @@ class App extends Component {
     locations: [
       {
         name: "Avenue of Stars",
-        coords: { lat: 22.293, lng: 114.1739 },
+        coords: { lat: 22.293725220320564, lng: 114.17291481589724 },
         content: "Avenue of Stars",
         category: "Outdoor"
       },
       {
-        name: "Mira Place",
-        coords: { lat: 22.3009, lng: 114.1722 },
-        content: "Mira Place",
-        category: "Shopping"
-      },
-      {
         name: "Kowloon Park",
-        coords: { lat: 22.3008, lng: 114.1701 },
+        coords: { lat: 22.30000017537535, lng: 114.17049388700053 },
         content: "Kowloon Park",
         category: "Outdoor"
       },
       {
         name: "Hong Kong Science Museum",
-        coords: { lat: 22.301, lng: 114.1776 },
+        coords: { lat: 22.301244972038052, lng: 114.17725996425949 },
         content: "Hong Kong Science Museum",
         category: "Museums"
       },
       {
-        name: "iSquare",
-        coords: { lat: 22.2969, lng: 114.1719 },
-        content: "iSquare",
-        category: "Shopping"
-      },
-      {
         name: "Hong Kong Space Museum",
-        coords: { lat: 22.2943, lng: 114.1719 },
+        coords: { lat: 22.29419639215586, lng: 114.17179245975316 },
         content: "Hong Kong Space Museum",
         category: "Museums"
       },
       {
         name: "Hong Kong Museum of Art",
-        coords: { lat: 22.2935, lng: 114.1721 },
+        coords: { lat: 22.29332616758428, lng: 114.17207723445968 },
         content: "Hong Kong Museum of Art",
         category: "Museums"
       },
       {
         name: "Star Ferry Pier",
-        coords: { lat: 22.2938, lng: 114.1687 },
+        coords: { lat: 22.294159014296316, lng: 114.16857586436123 },
         content: "Star Ferry Pier",
         category: "Outdoor"
       },
       {
         name: "The Langham Hong Kong Hotel",
-        coords: { lat: 22.2964, lng: 114.1697 },
+        coords: { lat: 22.29643627275219, lng: 114.17015466238834 },
         content: "The Langham Hong Kong Hotel",
         category: "Hotels"
       },
       {
         name: "The Peninsula Hong Kong Hotel",
-        coords: { lat: 22.2951, lng: 114.1719 },
+        coords: { lat: 22.2951024, lng: 114.1718537 },
         content: "The Peninsula Hong Kong Hotel",
         category: "Hotels"
       }
@@ -82,19 +70,41 @@ class App extends Component {
   getMarkerInfo = locations => {
     let clientId = "T4YAFFSJXDPTBYW3PUEBM4LOAQKLFBUNHYF30P2XHLMLCIME";
     let clientSecret = "ENY5ALSQ2ONEEU3TV25UDHDWNGL1A4P1GNM340MXYI2ZRKRW";
+
+    locations.forEach((location, index) => {
+      let url = `https://api.foursquare.com/v2/venues/search?ll=${
+        location.coords.lat
+      },${
+        location.coords.lng
+      }&client_id=${clientId}&client_secret=${clientSecret}&v=20180806&limit=1`;
+
+      fetch(url).then(response => {
+        if (response.status !== 200) {
+          location.content = "Sorry data cannot be fetched.";
+          return;
+        }
+        response.json().then(data => {
+          let locationData = data.response.venues[0];
+          this.setContent(index, locationData);
+          console.log(index);
+        });
+      });
+    });
   };
 
-  // setMapState = map => {
-  //   this.setState({ map });
-  // };
+  setContent = (index, locationData) => {
+    this.setState(prevState => {
+      prevState.locations[index].content = locationData;
+    });
+  };
 
   setFilterState = filter => {
     this.setState({ filter });
   };
 
-  setLocationState = location => {
-    this.setState();
-  };
+  // setLocationState = location => {
+  //   this.setState();
+  // };
 
   setMarkersState = marker => {
     this.setState(prevState => {
