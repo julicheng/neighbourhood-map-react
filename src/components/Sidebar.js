@@ -11,7 +11,16 @@ class Sidebar extends Component {
         />
         <ul>
           {this.props.filteredLocations.map(location => {
-            return <li key={location.name}>{location.name}</li>;
+            return (
+              <li
+                onClick={event => {
+                  this.props.markerClick(location.name);
+                }}
+                key={location.name}
+              >
+                {location.name}
+              </li>
+            );
           })}
         </ul>
       </nav>

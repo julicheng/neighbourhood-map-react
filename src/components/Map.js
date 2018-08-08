@@ -3,13 +3,8 @@ import React, { Component } from "react";
 const google = window.google;
 
 class Map extends Component {
-  //   componentDidMount() {
-  //     this.initMap();
-  //   }
-
-  shouldComponentUpdate() {
+  componentDidUpdate() {
     this.initMap();
-    return true;
   }
 
   initMap = () => {
@@ -32,11 +27,10 @@ class Map extends Component {
     let marker = new google.maps.Marker({
       position: props.coords,
       map: map,
+      title: props.name,
       icon: "https://www.google.com/intl/en_us/mapfiles/ms/micons/red-dot.png"
       //icon: props.iconImage
     });
-    // this.props.setMarkersState(marker);
-
     // info window
     let infoWindow = new google.maps.InfoWindow({
       content: `<h3>${props.name}</h3><p>${props.address}</p>`

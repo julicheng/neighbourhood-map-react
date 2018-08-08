@@ -73,7 +73,13 @@ nav li {
   padding: 10px;
   color: white;
   text-align: left;
+  cursor: pointer;
 }
+
+nav li:hover {
+  color: gray;
+}
+
 nav li:nth-child(odd) {
   background: rgb(46, 46, 46);
 }

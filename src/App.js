@@ -102,8 +102,7 @@ class App extends Component {
   };
 
   setFilterState = filter => {
-    this.setState({ filter });
-    this.filterLocations();
+    this.setState({ filter }, () => this.filterLocations());
   };
 
   filterLocations = () => {
@@ -117,10 +116,8 @@ class App extends Component {
     }
   };
 
-  setMarkersState = marker => {
-    this.setState(prevState => {
-      prevState.markers.push(marker);
-    });
+  markerClick = locationName => {
+    document.querySelector("div[title='" + locationName + "']").click();
   };
 
   handleButtonClick = () => {
@@ -138,10 +135,9 @@ class App extends Component {
           filter={this.state.filter}
           filteredLocations={this.state.filteredLocations}
           setFilterState={this.setFilterState}
+          markerClick={this.markerClick}
         />
         <Map
-          locations={this.state.locations}
-          markers={this.state.markers}
           setMapState={this.setMapState}
           setLocationState={this.setLocationState}
           setMarkersState={this.setMarkersState}
