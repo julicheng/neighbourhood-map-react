@@ -3,9 +3,9 @@ import React, { Component } from "react";
 const google = window.google;
 
 class Map extends Component {
-  componentDidMount() {
-    this.initMap();
-  }
+  //   componentDidMount() {
+  //     this.initMap();
+  //   }
 
   shouldComponentUpdate() {
     this.initMap();
@@ -22,7 +22,7 @@ class Map extends Component {
 
   setMarkers = map => {
     // loop through markers
-    this.props.locations.map(marker => {
+    this.props.filteredLocations.map(marker => {
       return this.addMarker(marker, map);
     });
   };
@@ -35,7 +35,7 @@ class Map extends Component {
       icon: "https://www.google.com/intl/en_us/mapfiles/ms/micons/red-dot.png"
       //icon: props.iconImage
     });
-    this.props.setMarkersState(marker);
+    // this.props.setMarkersState(marker);
 
     // info window
     let infoWindow = new google.maps.InfoWindow({

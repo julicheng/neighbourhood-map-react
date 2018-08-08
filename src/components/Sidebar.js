@@ -10,7 +10,7 @@ class Sidebar extends Component {
           setFilterState={this.props.setFilterState}
         />
         <ul>
-          {this.props.locations.map(location => {
+          {this.props.filteredLocations.map(location => {
             return <li key={location.name}>{location.name}</li>;
           })}
         </ul>

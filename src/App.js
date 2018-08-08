@@ -58,13 +58,13 @@ class App extends Component {
         category: "Hotels"
       }
     ],
-    markers: [],
-    filter: "none",
-    infoWindow: ""
+    filteredLocations: [],
+    filter: "none"
   };
 
   componentDidMount() {
     this.getMarkerInfo(this.state.locations);
+    this.setFilterState("none");
   }
 
   getMarkerInfo = locations => {
@@ -103,11 +103,19 @@ class App extends Component {
 
   setFilterState = filter => {
     this.setState({ filter });
+    this.filterLocations();
   };
 
-  // setLocationState = location => {
-  //   this.setState();
-  // };
+  filterLocations = () => {
+    if (this.state.filter === "none") {
+      this.setState({ filteredLocations: this.state.locations });
+    } else {
+      let filteredLocationsObject = this.state.locations.filter(location => {
+        return location.category === this.state.filter;
+      });
+      this.setState({ filteredLocations: filteredLocationsObject });
+    }
+  };
 
   setMarkersState = marker => {
     this.setState(prevState => {
@@ -128,7 +136,7 @@ class App extends Component {
         <Sidebar
           sidebar={this.state.sidebar}
           filter={this.state.filter}
-          locations={this.state.locations}
+          filteredLocations={this.state.filteredLocations}
           setFilterState={this.setFilterState}
         />
         <Map
@@ -137,6 +145,7 @@ class App extends Component {
           setMapState={this.setMapState}
           setLocationState={this.setLocationState}
           setMarkersState={this.setMarkersState}
+          filteredLocations={this.state.filteredLocations}
         />
         <Footer />
       </div>
