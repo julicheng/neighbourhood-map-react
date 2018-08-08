@@ -8,6 +8,7 @@ class Filter extends Component {
         onChange={event => {
           this.props.setFilterState(event.target.value);
         }}
+        aria-label="category-select"
       >
         <option value="none">No Category</option>
         <option value="Shopping">Shopping</option>

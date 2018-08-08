@@ -10,67 +10,83 @@ class App extends Component {
     sidebar: false,
     locations: [
       {
+        name: "Avenue of Stars",
         coords: { lat: 22.293, lng: 114.1739 },
-        iconImage:
-          "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png",
         content: "Avenue of Stars",
         category: "Outdoor"
       },
       {
+        name: "Mira Place",
         coords: { lat: 22.3009, lng: 114.1722 },
         content: "Mira Place",
         category: "Shopping"
       },
       {
+        name: "Kowloon Park",
         coords: { lat: 22.3008, lng: 114.1701 },
         content: "Kowloon Park",
         category: "Outdoor"
       },
       {
+        name: "Hong Kong Science Museum",
         coords: { lat: 22.301, lng: 114.1776 },
         content: "Hong Kong Science Museum",
         category: "Museums"
       },
       {
+        name: "iSquare",
         coords: { lat: 22.2969, lng: 114.1719 },
         content: "iSquare",
         category: "Shopping"
       },
       {
+        name: "Hong Kong Space Museum",
         coords: { lat: 22.2943, lng: 114.1719 },
         content: "Hong Kong Space Museum",
         category: "Museums"
       },
       {
+        name: "Hong Kong Museum of Art",
         coords: { lat: 22.2935, lng: 114.1721 },
         content: "Hong Kong Museum of Art",
         category: "Museums"
       },
       {
+        name: "Star Ferry Pier",
         coords: { lat: 22.2938, lng: 114.1687 },
         content: "Star Ferry Pier",
         category: "Outdoor"
       },
       {
+        name: "The Langham Hong Kong Hotel",
         coords: { lat: 22.2964, lng: 114.1697 },
         content: "The Langham Hong Kong Hotel",
         category: "Hotels"
       },
       {
+        name: "The Peninsula Hong Kong Hotel",
         coords: { lat: 22.2951, lng: 114.1719 },
         content: "The Peninsula Hong Kong Hotel",
         category: "Hotels"
       }
     ],
     markers: [],
-    filterMarkers: [],
-    map: [],
-    filter: "none"
+    filter: "none",
+    infoWindow: ""
   };
 
-  setMapState = map => {
-    this.setState({ map });
+  componentDidMount() {
+    this.getMarkerInfo(this.state.locations);
+  }
+
+  getMarkerInfo = locations => {
+    let clientId = "T4YAFFSJXDPTBYW3PUEBM4LOAQKLFBUNHYF30P2XHLMLCIME";
+    let clientSecret = "ENY5ALSQ2ONEEU3TV25UDHDWNGL1A4P1GNM340MXYI2ZRKRW";
   };
+
+  // setMapState = map => {
+  //   this.setState({ map });
+  // };
 
   setFilterState = filter => {
     this.setState({ filter });
