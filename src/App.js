@@ -68,29 +68,31 @@ class App extends Component {
   }
 
   getMarkerInfo = locations => {
-    let clientId = "T4YAFFSJXDPTBYW3PUEBM4LOAQKLFBUNHYF30P2XHLMLCIME";
-    let clientSecret = "ENY5ALSQ2ONEEU3TV25UDHDWNGL1A4P1GNM340MXYI2ZRKRW";
+    let clientId = "<your CLIENT ID>";
+    let clientSecret = "<your CLIENT SECRET>";
 
-    locations.forEach((location, index) => {
-      let url = `https://api.foursquare.com/v2/venues/search?ll=${
-        location.coords.lat
-      },${
-        location.coords.lng
-      }&client_id=${clientId}&client_secret=${clientSecret}&v=20180806&limit=1`;
+    if (clientId !== "" && clientSecret !== "") {
+      locations.forEach((location, index) => {
+        let url = `https://api.foursquare.com/v2/venues/search?ll=${
+          location.coords.lat
+        },${
+          location.coords.lng
+        }&client_id=${clientId}&client_secret=${clientSecret}&v=20180806&limit=1`;
 
-      fetch(url).then(response => {
-        let addressData;
-        if (response.status !== 200) {
-          addressData = "Sorry data cannot be fetched.";
-          this.setContent(index, addressData);
-          return;
-        }
-        response.json().then(data => {
-          addressData = data.response.venues[0];
-          this.setContent(index, addressData);
+        fetch(url).then(response => {
+          let addressData;
+          if (response.status !== 200) {
+            addressData = "Sorry data cannot be fetched.";
+            this.setContent(index, addressData);
+            return;
+          }
+          response.json().then(data => {
+            addressData = data.response.venues[0];
+            this.setContent(index, addressData);
+          });
         });
       });
-    });
+    }
   };
 
   setContent = (index, addressData) => {
@@ -117,7 +119,9 @@ class App extends Component {
   };
 
   markerClick = locationName => {
-    document.querySelector("div[title='" + locationName + "']").click();
+    if (document.querySelector("div[title='" + locationName + "']")) {
+      document.querySelector("div[title='" + locationName + "']").click();
+    }
   };
 
   handleButtonClick = () => {
