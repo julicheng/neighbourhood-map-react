@@ -84,17 +84,17 @@ class App extends Component {
           return;
         }
         response.json().then(data => {
-          let locationData = data.response.venues[0];
-          this.setContent(index, locationData);
-          console.log(index);
+          let addressData =
+            data.response.venues[0].location.formattedAddress[0];
+          this.setContent(index, addressData);
         });
       });
     });
   };
 
-  setContent = (index, locationData) => {
+  setContent = (index, addressData) => {
     this.setState(prevState => {
-      prevState.locations[index].content = locationData;
+      prevState.locations[index].content = addressData;
     });
   };
 
@@ -131,7 +131,6 @@ class App extends Component {
         <Map
           locations={this.state.locations}
           markers={this.state.markers}
-          map={this.state.map}
           setMapState={this.setMapState}
           setLocationState={this.setLocationState}
           setMarkersState={this.setMarkersState}

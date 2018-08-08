@@ -7,6 +7,10 @@ class Map extends Component {
     this.initMap();
   }
 
+  shouldComponentUpdate() {
+    this.initMap();
+  }
+
   initMap = () => {
     let map = new google.maps.Map(document.getElementById("map"), {
       zoom: 15,
@@ -36,7 +40,7 @@ class Map extends Component {
     if (props.content) {
       // info window
       let infoWindow = new google.maps.InfoWindow({
-        content: props.content
+        content: "<h3>" + props.name + "</h3>" + "<p>" + props.content + "</p>"
       });
 
       // add listener for info window
