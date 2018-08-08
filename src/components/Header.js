@@ -1,13 +1,22 @@
 import React, { Component } from "react";
 
 class Header extends Component {
-  state = {};
+  checkIfEnter = event => {
+    if ((event.key = "Enter" || event.which === 13)) {
+      this.props.handleButtonClick();
+    }
+  };
   render() {
     return (
       <header className="App-header">
         <div
           className="sidebar-toggle-button"
           onClick={this.props.handleButtonClick}
+          aria-label="hamburger"
+          tabIndex="0"
+          onKeyPress={event => {
+            this.checkIfEnter(event);
+          }}
         >
           <div className="hamburger" />
           <div className="hamburger" />
