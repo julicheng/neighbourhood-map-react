@@ -9,6 +9,7 @@ class Map extends Component {
 
   shouldComponentUpdate() {
     this.initMap();
+    return true;
   }
 
   initMap = () => {
@@ -36,27 +37,24 @@ class Map extends Component {
     });
     this.props.setMarkersState(marker);
 
-    // check content
-    if (props.content) {
-      // info window
-      let infoWindow = new google.maps.InfoWindow({
-        content: "<h3>" + props.name + "</h3>" + "<p>" + props.content + "</p>"
-      });
+    // info window
+    let infoWindow = new google.maps.InfoWindow({
+      content: `<h3>${props.name}</h3><p>${props.address}</p>`
+    });
 
-      // add listener for info window
-      marker.addListener("click", function() {
-        marker.setIcon(
-          "https://www.google.com/intl/en_us/mapfiles/ms/micons/green-dot.png"
-        );
-        infoWindow.open(map, marker);
-      });
+    // add listener for info window
+    marker.addListener("click", function() {
+      marker.setIcon(
+        "https://www.google.com/intl/en_us/mapfiles/ms/micons/green-dot.png"
+      );
+      infoWindow.open(map, marker);
+    });
 
-      google.maps.event.addListener(infoWindow, "closeclick", function() {
-        marker.setIcon(
-          "https://www.google.com/intl/en_us/mapfiles/ms/micons/red-dot.png"
-        ); //removes the marker
-      });
-    }
+    google.maps.event.addListener(infoWindow, "closeclick", function() {
+      marker.setIcon(
+        "https://www.google.com/intl/en_us/mapfiles/ms/micons/red-dot.png"
+      ); //removes the marker
+    });
   };
 
   render() {

@@ -12,49 +12,49 @@ class App extends Component {
       {
         name: "Avenue of Stars",
         coords: { lat: 22.293725220320564, lng: 114.17291481589724 },
-        content: "Avenue of Stars",
+        address: "",
         category: "Outdoor"
       },
       {
         name: "Kowloon Park",
         coords: { lat: 22.30000017537535, lng: 114.17049388700053 },
-        content: "Kowloon Park",
+        address: "",
         category: "Outdoor"
       },
       {
         name: "Hong Kong Science Museum",
         coords: { lat: 22.301244972038052, lng: 114.17725996425949 },
-        content: "Hong Kong Science Museum",
+        address: "",
         category: "Museums"
       },
       {
         name: "Hong Kong Space Museum",
         coords: { lat: 22.29419639215586, lng: 114.17179245975316 },
-        content: "Hong Kong Space Museum",
+        address: "",
         category: "Museums"
       },
       {
         name: "Hong Kong Museum of Art",
         coords: { lat: 22.29332616758428, lng: 114.17207723445968 },
-        content: "Hong Kong Museum of Art",
+        address: "",
         category: "Museums"
       },
       {
         name: "Star Ferry Pier",
         coords: { lat: 22.294159014296316, lng: 114.16857586436123 },
-        content: "Star Ferry Pier",
+        address: "",
         category: "Outdoor"
       },
       {
         name: "The Langham Hong Kong Hotel",
         coords: { lat: 22.29643627275219, lng: 114.17015466238834 },
-        content: "The Langham Hong Kong Hotel",
+        address: "",
         category: "Hotels"
       },
       {
         name: "The Peninsula Hong Kong Hotel",
         coords: { lat: 22.2951024, lng: 114.1718537 },
-        content: "The Peninsula Hong Kong Hotel",
+        address: "",
         category: "Hotels"
       }
     ],
@@ -79,13 +79,14 @@ class App extends Component {
       }&client_id=${clientId}&client_secret=${clientSecret}&v=20180806&limit=1`;
 
       fetch(url).then(response => {
+        let addressData;
         if (response.status !== 200) {
-          location.content = "Sorry data cannot be fetched.";
+          addressData = "Sorry data cannot be fetched.";
+          this.setContent(index, addressData);
           return;
         }
         response.json().then(data => {
-          let addressData =
-            data.response.venues[0].location.formattedAddress[0];
+          addressData = data.response.venues[0];
           this.setContent(index, addressData);
         });
       });
@@ -93,8 +94,10 @@ class App extends Component {
   };
 
   setContent = (index, addressData) => {
-    this.setState(prevState => {
-      prevState.locations[index].content = addressData;
+    const locationsObj = this.state.locations;
+    locationsObj[index].address = addressData;
+    this.setState({
+      locations: locationsObj
     });
   };
 
