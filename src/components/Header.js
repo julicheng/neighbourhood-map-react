@@ -1,31 +1,29 @@
-import React, { Component } from "react";
+import React from "react";
 
-class Header extends Component {
-  checkIfEnter = event => {
+const Header = props => {
+  function checkIfEnter(event) {
     if ((event.key = "Enter" || event.which === 13)) {
-      this.props.handleButtonClick();
+      props.handleButtonClick();
     }
-  };
-  render() {
-    return (
-      <header className="App-header">
-        <div
-          className="sidebar-toggle-button"
-          onClick={this.props.handleButtonClick}
-          aria-label="hamburger"
-          tabIndex="0"
-          onKeyPress={event => {
-            this.checkIfEnter(event);
-          }}
-        >
-          <div className="hamburger" />
-          <div className="hamburger" />
-          <div className="hamburger" />
-        </div>
-        <h3 className="App-header-title">TST Neighbourhood Map</h3>
-      </header>
-    );
   }
-}
+  return (
+    <header className="App-header">
+      <div
+        className="sidebar-toggle-button"
+        onClick={props.handleButtonClick}
+        aria-label="hamburger"
+        tabIndex="0"
+        onKeyPress={event => {
+          checkIfEnter(event);
+        }}
+      >
+        <div className="hamburger" />
+        <div className="hamburger" />
+        <div className="hamburger" />
+      </div>
+      <h3 className="App-header-title">TST Neighbourhood Map</h3>
+    </header>
+  );
+};
 
 export default Header;
