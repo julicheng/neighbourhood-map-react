@@ -68,8 +68,8 @@ class App extends Component {
   }
 
   getMarkerInfo = locations => {
-    let clientId = "<your CLIENT ID>";
-    let clientSecret = "<your CLIENT SECRET>";
+    let clientId = "T4YAFFSJXDPTBYW3PUEBM4LOAQKLFBUNHYF30P2XHLMLCIME";
+    let clientSecret = "ENY5ALSQ2ONEEU3TV25UDHDWNGL1A4P1GNM340MXYI2ZRKRW";
 
     if (clientId !== "" && clientSecret !== "") {
       locations.forEach((location, index) => {
@@ -87,7 +87,7 @@ class App extends Component {
             return;
           }
           response.json().then(data => {
-            addressData = data.response.venues[0];
+            addressData = data.response.venues[0].location.formattedAddress[0];
             this.setContent(index, addressData);
           });
         });
