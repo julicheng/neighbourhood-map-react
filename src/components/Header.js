@@ -1,6 +1,7 @@
 import React from "react";
 
 const Header = props => {
+  // Check if the enter key is pressed and then call the markerClick method to open infowindow
   function checkIfEnter(event) {
     if ((event.key = "Enter" || event.which === 13)) {
       props.handleButtonClick();

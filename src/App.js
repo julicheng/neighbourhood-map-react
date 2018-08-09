@@ -63,15 +63,17 @@ class App extends Component {
   };
 
   componentDidMount() {
-    this.getMarkerInfo(this.state.locations);
+    this.getAddressInfo(this.state.locations);
     this.setFilterState("none");
   }
 
-  getMarkerInfo = locations => {
-    let clientId = "T4YAFFSJXDPTBYW3PUEBM4LOAQKLFBUNHYF30P2XHLMLCIME";
-    let clientSecret = "ENY5ALSQ2ONEEU3TV25UDHDWNGL1A4P1GNM340MXYI2ZRKRW";
+  // Fetch address data from foursquare api
+  getAddressInfo = locations => {
+    let clientId = "<your CLIENT ID>";
+    let clientSecret = "<your CLIENT SECRET>";
 
     if (clientId !== "" && clientSecret !== "") {
+      // Look through the locations array to fetch data from api for each location
       locations.forEach((location, index) => {
         let url = `https://api.foursquare.com/v2/venues/search?ll=${
           location.coords.lat
@@ -87,6 +89,7 @@ class App extends Component {
             return;
           }
           response.json().then(data => {
+            // Get data of the address for the location and send to setContent to set the state of updated locations array
             addressData = data.response.venues[0].location.formattedAddress[0];
             this.setContent(index, addressData);
           });
@@ -95,6 +98,7 @@ class App extends Component {
     }
   };
 
+  // Set the state for the locations array with updated address
   setContent = (index, addressData) => {
     const locationsObj = this.state.locations;
     locationsObj[index].address = addressData;
@@ -103,10 +107,12 @@ class App extends Component {
     });
   };
 
+  // Set state for the filter when the filter is changed and call filterLocations to select correct locations
   setFilterState = filter => {
     this.setState({ filter }, () => this.filterLocations());
   };
 
+  // Filter locations with the correct category
   filterLocations = () => {
     if (this.state.filter === "none") {
       this.setState({ filteredLocations: this.state.locations });
@@ -118,12 +124,14 @@ class App extends Component {
     }
   };
 
+  // Check which list item is clicked and open the corresponding marker
   markerClick = locationName => {
     if (document.querySelector("div[title='" + locationName + "']")) {
       document.querySelector("div[title='" + locationName + "']").click();
     }
   };
 
+  // Reverse the current state of the sidebar when the hamburger is clicked
   handleButtonClick = () => {
     this.setState(prevState => {
       return { sidebar: !prevState.sidebar };

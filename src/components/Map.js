@@ -12,31 +12,31 @@ class Map extends Component {
       zoom: 15,
       center: { lat: 22.2988, lng: 114.1722 }
     });
+    // Create markers and infoWindows
     this.setMarkers(map);
   };
 
   setMarkers = map => {
-    // loop through markers
+    // Loop through filteredLocations to create markers and infoWindows
     this.props.filteredLocations.map(marker => {
       return this.addMarker(marker, map);
     });
   };
 
-  // add marker function
   addMarker = (props, map) => {
     let marker = new google.maps.Marker({
       position: props.coords,
       map: map,
       title: props.name,
       icon: "https://www.google.com/intl/en_us/mapfiles/ms/micons/red-dot.png"
-      //icon: props.iconImage
     });
-    // info window
+
+    // Info window
     let infoWindow = new google.maps.InfoWindow({
       content: `<h3>${props.name}</h3><p>${props.address}</p>`
     });
 
-    // add listener for info window
+    // Add listener for info window
     marker.addListener("click", function() {
       marker.setIcon(
         "https://www.google.com/intl/en_us/mapfiles/ms/micons/green-dot.png"
@@ -47,7 +47,7 @@ class Map extends Component {
     google.maps.event.addListener(infoWindow, "closeclick", function() {
       marker.setIcon(
         "https://www.google.com/intl/en_us/mapfiles/ms/micons/red-dot.png"
-      ); //removes the marker
+      );
     });
   };
 

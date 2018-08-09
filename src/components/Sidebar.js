@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Filter from "./Filter";
 
 class Sidebar extends Component {
+  // Check if the enter key is pressed and then call the markerClick method to open infowindow
   checkIfEnter = (event, location) => {
     if ((event.key = "Enter" || event.which === 13)) {
       this.props.markerClick(location);
