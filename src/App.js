@@ -77,7 +77,12 @@ class App extends Component {
     let clientId = "<your CLIENT ID>";
     let clientSecret = "<your CLIENT SECRET>";
 
-    if (clientId !== "" && clientSecret !== "") {
+    if (
+      clientId !== "<your CLIENT ID>" &&
+      clientSecret !== "<your CLIENT SECRET>" &&
+      clientId !== "" &&
+      clientSecret !== ""
+    ) {
       // Look through the locations array to fetch data from api for each location
       locations.forEach((location, index) => {
         let url = `https://api.foursquare.com/v2/venues/search?ll=${
