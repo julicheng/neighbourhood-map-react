@@ -5,6 +5,11 @@ import Map from "./components/Map";
 import Footer from "./components/Footer";
 import "./App.css";
 
+// Alert user if google maps fails to load
+window.gm_authFailure = () => {
+  alert("Google Maps has failed to load! Please check your Google API key!");
+};
+
 class App extends Component {
   state = {
     sidebar: false,
