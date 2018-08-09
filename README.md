@@ -17,3 +17,8 @@ To view the application, you will need to replace `<your GOOGLE API KEY>` in the
 3.  Navigate to where the repository has been cloned or downloaded.
 4.  In a terminal, run `npm install` then `npm start`
 5.  The browser will open the application in a new tab.
+
+## Running in Production Build
+
+The app also includes a service worker so that it can be used offline.
+To run in production build, run `npm run serve` rather than `npm start`.
